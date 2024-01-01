@@ -1,16 +1,11 @@
 <?php
 
-namespace Config;
+class DatabaseConnection {
+    private static $instance;
+    private $pdo;
 
-use PDO;
-use PDOException;
-use Dotenv\Dotenv;
-
-class DatabaseConnection
-{
-    public static function getConnection()
-    {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/..'); 
+    private function __construct() {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../'); 
         $dotenv->load();
 
         $host = $_ENV['DB_HOST'];
@@ -19,11 +14,18 @@ class DatabaseConnection
         $password = $_ENV['DB_PASSWORD'];
 
         try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
+            $this->pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
+    }
+
+    public static function getConnection() {
+        if (!self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance->pdo;
     }
 }

@@ -1,93 +1,68 @@
 <?php
 
-use Config\DatabaseConnection;
+namespace App\Models;
 
-class UserDAO {
-    protected $id;
-    protected $fullName;
-    protected $email;
-    protected $passwordHash;
+class User 
+{
+    private $cin;
+    private $fullName;
+    private $email;
+    private $password;
+    private $type;
 
-    public function getEmail() {
+
+    public function __construct($cin, $fullName, $email, $password, $type)
+    {
+        $this->cin = $cin;
+        $this->fullName = $fullName;
+        $this->email = $email;
+        $this->password = $password;
+        $this->type = $type;
+    }
+
+    // Getters
+    public function getCin()
+    {
+        return $this->cin;
+    }
+
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getPasswordHash() {
-        return $this->passwordHash;
+    public function getPassword()
+    {
+        return $this->password;
     }
 
-    public static function getUserByEmail($email) {
-        
-        $pdo = DatabaseConnection::getConnection();
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-
-        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($userData) {
-            return new UserDAO($userData['id'], $userData['full_name'], $userData['email'], $userData['password_hash']);
-        }
-
-        return null; 
+    public function getType()
+    {
+        return $this->type;
     }
 
-    public static function createUser($fullName, $email, $password) {
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-        $pdo = DatabaseConnection::getConnection();
-
-        try {
-            $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password_hash) VALUES (?, ?, ?)");
-            $stmt->execute([$fullName, $email, $passwordHash]);
-
-            return true;
-        } catch (PDOException $e) {
-            return false;
-        }
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
     }
 
-    public static function getAllUsers() {
-        $pdo = DatabaseConnection::getConnection();
-
-        try {
-            $stmt = $pdo->query("SELECT * FROM users");
-            $users = [];
-
-            while ($userData = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $users[] = new UserDAO($userData['id'], $userData['full_name'], $userData['email'], $userData['password_hash']);
-            }
-
-            return $users;
-        } catch (PDOException $e) {
-            return [];
-        }
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
-    public static function updateUser($id, $fullName, $email, $password) {
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-        $pdo = DatabaseConnection::getConnection();
-
-        try {
-            $stmt = $pdo->prepare("UPDATE users SET full_name = ?, email = ?, password_hash = ? WHERE id = ?");
-            $stmt->execute([$fullName, $email, $passwordHash, $id]);
-
-            return true;
-        } catch (PDOException $e) {
-            return false;
-        }
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
-    public static function deleteUser($id) {
-        $pdo = DatabaseConnection::getConnection();
-
-        try {
-            $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
-            $stmt->execute([$id]);
-
-            return true;
-        } catch (PDOException $e) {
-            return false;
-        }
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }
