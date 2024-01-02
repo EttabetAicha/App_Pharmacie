@@ -8,18 +8,16 @@ class Medicament {
     private $description;
     private $quantiteStock;
     private $prix;
-    private $dateCreation; // Assuming date_creation is required
+    private $dateCreation; 
 
-    // Constructor
     public function __construct($nom, $description, $quantiteStock, $prix) {
         $this->nom = $nom;
         $this->description = $description;
         $this->quantiteStock = $quantiteStock;
         $this->prix = $prix;
-        $this->dateCreation = new \DateTime(); // Current date and time
+        $this->dateCreation = new \DateTime(); 
     }
 
-    // Getters
     public function getId() {
         return $this->id;
     }
