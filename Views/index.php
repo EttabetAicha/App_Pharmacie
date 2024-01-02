@@ -95,7 +95,7 @@
 													<li><a href="index.php">Home Page 1</a></li>
 												</ul>
 											</li>
-											<li><a href="#">Medicine </a></li>
+											<li><a href="medicament.php">Medicine </a></li>
 											<li><a href="#">Services </a></li>
 											<li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
 												<ul class="dropdown">
