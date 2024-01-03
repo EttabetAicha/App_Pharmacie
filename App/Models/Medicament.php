@@ -17,7 +17,7 @@ class Medicament {
         $this->prix = $prix;
         $this->dateCreation = new \DateTime(); 
     }
-
+   
     public function getId() {
         return $this->id;
     }

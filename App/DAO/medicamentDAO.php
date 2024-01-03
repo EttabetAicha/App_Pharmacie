@@ -4,9 +4,16 @@ use App\Models\Medicament;
 
 class MedicamentDAO {
     private $db;
+    private static $instance;
 
     public function __construct() {
         $this->db = DatabaseConnection::getConnection(); 
+    }
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new MedicamentDAO();
+        }
+        return self::$instance;
     }
 
     public function create(Medicament $medicament) {
