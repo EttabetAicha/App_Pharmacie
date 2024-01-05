@@ -10,6 +10,7 @@ use App\Controllers\PatientController;
 use App\Controllers\AuthController;
 use App\DAO\MedicationDAO;
 use App\Controllers\PatientEnligneController;
+use App\Controllers\AdminController;
 use App\Routes\Router;
 
 session_start();
@@ -20,11 +21,14 @@ ob_start();
 
 $router = new Router();
 
-
+//get
 $router->get('/', 'App\Controllers\patientEnligneController@displayinterface');
-$router->get('/login', 'App\Controllers\AuthController@showLoginForm');
-$router->post('/login', 'App\Controllers\AuthController@authenticate');
-$router->get('/patientdashboard', 'App\Controllers\PatientController@showDashboard');
+$router->get('/authetification', 'App\Controllers\AuthController@displayInterface');
+$router->get('/dashboard', 'App\Controllers\AdminController@showAdminDashboard');
+
+//post
+$router->post('/register', 'App\Controllers\AuthController@signup');
+$router->post('/login', 'App\Controllers\AuthController@signin');
 
 
 

@@ -1,11 +1,12 @@
 <?php
-use DatabaseConnection;
+
+use Config\DbConnection;
 class VenteDAO {
     private static $instance;
     private $database;
 
     private function __construct() {
-        $this->database = DatabaseConnection::getConnection();
+        $this->database = DbConnection::getConnection();
     }
 
     public static function getInstance() {  

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/../public/assets/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="signup" method="POST" >
+		<form action="register" method="POST" >
 			<h1>Create Account</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -26,7 +26,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="signin" method="GET">
+		<form action="login" method="POST">
 			<h1>Sign in</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -57,6 +57,6 @@
 </div>
 
   
-<script src="../public/assets/js/login.js"></script>
+<script src="assets/js/login.js"></script>
 </body>
 </html>
