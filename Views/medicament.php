@@ -92,7 +92,7 @@
                             <div class="main-menu">
                                 <nav class="navigation">
                                     <ul class="nav menu">
-                                        <li><a href="#">Home <i class="icofont-rounded-down"></i></a>
+                                        <li><a href="index.php">Home <i class="icofont-rounded-down"></i></a>
 
                                         </li>
                                         <li class="active"><a href="medicament.php">Medicine </a></li>

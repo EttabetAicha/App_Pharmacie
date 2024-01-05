@@ -5,7 +5,7 @@ namespace App\DAO;
 use App\Models\User;
 use DatabaseConnection as GlobalDatabaseConnection;
 
-class UserDAO {
+class UserDAO  {
     private $db;
     public function __construct() {
         $this->db = GlobalDatabaseConnection::getConnection();

@@ -15,8 +15,6 @@ class Vente {
         $this->type = $type;
         $this->IsSale = $IsSale;
     }
-
-
     public function getMedicament() {
         return $this->medicament;
     }

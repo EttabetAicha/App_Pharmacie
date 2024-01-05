@@ -9,12 +9,7 @@ class MedicamentDAO {
     public function __construct() {
         $this->db = DatabaseConnection::getConnection(); 
     }
-    public static function getInstance() {
-        if (!self::$instance) {
-            self::$instance = new MedicamentDAO();
-        }
-        return self::$instance;
-    }
+   
 
     public function create(Medicament $medicament) {
         $query = "INSERT INTO medicaments (nom, description, quantite_stock, prix) VALUES (:nom, :description, :quantite_stock, :prix)";

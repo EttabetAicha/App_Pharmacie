@@ -20,7 +20,6 @@ class User
         $this->type = $type;
     }
 
-    // Getters
     public function getCin()
     {
         return $this->cin;
