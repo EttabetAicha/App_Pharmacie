@@ -26,11 +26,19 @@ $router->get('/', 'App\Controllers\patientEnligneController@displayinterface');
 $router->get('/authetification', 'App\Controllers\AuthController@displayInterface');
 $router->get('/dashboard', 'App\Controllers\AdminController@showAdminDashboard');
 $router->get('/users', 'App\Controllers\AdminController@index');
+$router->get('/exportPdf', 'App\Controllers\AdminController@exportToPDF');
+
 
 
 //post
 $router->post('/register', 'App\Controllers\AuthController@signup');
 $router->post('/login', 'App\Controllers\AuthController@signin');
+$router->post('/user/edit', 'App\Controllers\AdminController@updateUser');
+$router->post('/user/delete', 'App\Controllers\AdminController@deleteUser');
+$router->post('/adduser', 'App\Controllers\AdminController@addUser');
+
+
+
 
 
 

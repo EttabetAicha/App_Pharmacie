@@ -123,9 +123,68 @@
 								<div class="col-sm-5">
 									<h2>Store <b>Management</b></h2>
 								</div>
+								<!-- Button to trigger the Add New User Modal -->
+
+
+								<!-- Add New User Modal -->
+								<div class="modal" id="addUserModal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Add New User</h4>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+											</div>
+
+											<!-- Modal Body -->
+											<div class="modal-body">
+												<!-- Add user form -->
+												<form method="post" action="/adduser">
+													<input type="hidden" name="action" value="add">
+
+													<!-- Input field for CIN -->
+													<div class="form-group">
+														<label for="addCIN">CIN:</label>
+														<input type="text" class="form-control" placeholder="CIN" id="addCIN" name="addCIN" required>
+													</div>
+
+													<!-- Input field for full name -->
+													<div class="form-group">
+														<label for="addFullName">Full Name:</label>
+														<input type="text" class="form-control" id="addFullName" placeholder="full_name" name="addFullName" required>
+													</div>
+
+													<!-- Input field for email -->
+													<div class="form-group">
+														<label for="addEmail">Email:</label>
+														<input type="email" class="form-control" id="addEmail" placeholder="email" name="addEmail" required>
+													</div>
+
+													<!-- Input field for password -->
+													<div class="form-group">
+														<label for="addPassword">Password:</label>
+														<input type="password" class="form-control" id="addPassword" placeholder="password" name="addPassword" required>
+													</div>
+
+													<!-- Hidden field for default type -->
+													<input type="hidden" name="addType" value="PatientEnmagasin">
+
+													<!-- Modal Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Add User</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<div class="col-sm-7">
-									<a href="page_add_product.php" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-									<a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to PDF</span></a>
+									<a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#addUserModal">
+										<i class="material-icons">&#xE147;</i> <span>Add New User</span>
+									</a> <a href="/exportPdf" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to PDF</span></a>
 								</div>
 							</div>
 						</div>
@@ -169,7 +228,7 @@
 												<!-- Modal Body -->
 												<div class="modal-body">
 													<!-- Add/update user form -->
-													<form method="post" action="/dashboard">
+													<form method="post" action="/user/edit">
 														<input type="hidden" name="action" value="update">
 														<input type="hidden" name="cin" value="<?= $user['CIN'] ?>">
 
@@ -189,7 +248,7 @@
 															<label for="updateType">User Type:</label>
 															<select class="form-control" id="updateType" name="updateType">
 																<option value="Admin" <?= $user['type'] == 'Admin' ? 'selected' : '' ?>>Admin</option>
-																<option value="PatientEnLigne" <?= $user['type'] =="PatientEnLigne" ? 'selected' : '' ?>>PatientEnLigne</option>
+																<option value="PatientEnLigne" <?= $user['type'] == "PatientEnLigne" ? 'selected' : '' ?>>PatientEnLigne</option>
 																<option value="PatientEnMagasin" <?= $user['type'] == "PatientEnMagasin" ? 'selected' : '' ?>>PatientEnMagasin</option>
 
 															</select>
@@ -216,12 +275,14 @@
 
 												<div class="modal-body">
 													<!-- Delete user form -->
-													<form method="post" action="/dashboard">
+													<form method="post" action="/user/delete">
 														<input type="hidden" name="action" value="delete">
-														<input type="hidden" name="cin" value="<?= $user['CIN'] ?>">
+														<input type="hidden" name="CIN" value="<?= $user['CIN'] ?>">
 														<p>Are you sure you want to delete this user?</p>
 														<button type="submit" class="btn btn-danger">Delete</button>
 													</form>
+
+
 												</div>
 											</div>
 										</div>
