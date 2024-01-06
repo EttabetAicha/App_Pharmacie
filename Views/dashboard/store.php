@@ -31,28 +31,28 @@
 			<span class="text">Admin</span>
 		</a>
 		<ul class="side-menu top">
-			<li>
-				<a href="dashboard.php">
+			<li class="active">
+				<a href="#">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li  >
+			<li>
 				<a href="store.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Store</span>
+					<span class="text">Manage Our Users</span>
 				</a>
 			</li>
-			<li c>
-				<a href="user_page.php">
+			<li>
+				<a href="#">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">users</span>
+					<span class="text">Manage Medicine</span>
 				</a>
 			</li>
-			<li lass="active">
-				<a href="vente.php">
+			<li>
+				<a href="#">
 					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Vente</span>
+					<span class="text">Manage Sales</span>
 				</a>
 			</li>
 			<li>

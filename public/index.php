@@ -25,6 +25,8 @@ $router = new Router();
 $router->get('/', 'App\Controllers\patientEnligneController@displayinterface');
 $router->get('/authetification', 'App\Controllers\AuthController@displayInterface');
 $router->get('/dashboard', 'App\Controllers\AdminController@showAdminDashboard');
+$router->get('/users', 'App\Controllers\AdminController@index');
+
 
 //post
 $router->post('/register', 'App\Controllers\AuthController@signup');

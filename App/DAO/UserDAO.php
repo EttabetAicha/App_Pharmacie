@@ -20,7 +20,13 @@ class UserDAO  {
             echo "Error creating user: " . $e->getMessage();
         }
     }
-
+    public function getallUsers() {
+        $query = "SELECT * FROM users";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
     public function getUserByCin($cin) {
         $query = "SELECT * FROM users WHERE CIN = ?";
         $stmt = $this->db->prepare($query);
