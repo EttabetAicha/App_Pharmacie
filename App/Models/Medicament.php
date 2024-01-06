@@ -10,7 +10,8 @@ class Medicament {
     private $prix;
     private $dateCreation; 
 
-    public function __construct($nom, $description, $quantiteStock, $prix) {
+    public function __construct($id,$nom, $description, $quantiteStock, $prix) {
+        $this->id = $id;
         $this->nom = $nom;
         $this->description = $description;
         $this->quantiteStock = $quantiteStock;

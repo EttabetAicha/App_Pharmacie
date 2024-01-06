@@ -33,19 +33,19 @@
 		</a>
 		<ul class="side-menu top">
 			<li>
-				<a href="#">
+				<a href="dashboard">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li class="active">
-				<a href="store.php">
+				<a href="users">
 					<i class='bx bxs-shopping-bag-alt'></i>
 					<span class="text">Manage Our Users</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="medicine">
 					<i class='bx bxs-doughnut-chart'></i>
 					<span class="text">Manage Medicine</span>
 				</a>

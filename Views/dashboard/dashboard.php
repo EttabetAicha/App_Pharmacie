@@ -34,13 +34,13 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="medicine">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Manage Medicine</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="sales">
 					<i class='bx bxs-message-dots' ></i>
 					<span class="text">Manage Sales</span>
 				</a>
