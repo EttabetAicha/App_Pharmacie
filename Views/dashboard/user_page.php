@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/dashboard.css">
 
 	<title>My Store</title>
@@ -138,7 +139,7 @@
 									<th>Action</th>
 								</tr>
 							</thead>
-							
+
 							<tbody>
 								<?php foreach ($users as $user) : ?>
 									<tr>
@@ -147,12 +148,89 @@
 										<td><?= $user['email'] ?></td>
 										<td><?= $user['type'] ?></td>
 										<td>
-											<!-- Your action buttons here -->
+											<a href="#" class="settings" title="Settings" data-toggle="modal" data-target="#updateUserModal<?= $user['CIN'] ?>">
+												<i class="material-icons">&#xE8B8;</i>
+											</a>
+											<a href="#" class="delete" title="Delete" data-toggle="modal" data-target="#deleteUserModal<?= $user['CIN'] ?>">
+												<i class="material-icons">&#xE5C9;</i>
+											</a>
 										</td>
 									</tr>
+
+									<div class="modal" id="updateUserModal<?= $user['CIN'] ?>">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<!-- Modal Header -->
+												<div class="modal-header">
+													<h4 class="modal-title">Update User</h4>
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+												</div>
+
+												<!-- Modal Body -->
+												<div class="modal-body">
+													<!-- Add/update user form -->
+													<form method="post" action="/dashboard">
+														<input type="hidden" name="action" value="update">
+														<input type="hidden" name="cin" value="<?= $user['CIN'] ?>">
+
+														<div class="form-group">
+															<label for="updateFullName">Full Name:</label>
+															<input type="text" class="form-control" id="updateFullName" name="updateFullName" value="<?= $user['full_name'] ?>">
+														</div>
+
+														<!-- Input field for updated email -->
+														<div class="form-group">
+															<label for="updateEmail">Email:</label>
+															<input type="email" class="form-control" id="updateEmail" name="updateEmail" value="<?= $user['email'] ?>">
+														</div>
+
+														<!-- Dropdown for updated user type -->
+														<div class="form-group">
+															<label for="updateType">User Type:</label>
+															<select class="form-control" id="updateType" name="updateType">
+																<option value="Admin" <?= $user['type'] == 'Admin' ? 'selected' : '' ?>>Admin</option>
+																<option value="PatientEnLigne" <?= $user['type'] =="PatientEnLigne" ? 'selected' : '' ?>>PatientEnLigne</option>
+																<option value="PatientEnMagasin" <?= $user['type'] == "PatientEnMagasin" ? 'selected' : '' ?>>PatientEnMagasin</option>
+
+															</select>
+														</div>
+
+
+
+														<button type="submit" class="btn btn-primary">Update</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Delete User Modal -->
+									<div class="modal" id="deleteUserModal<?= $user['CIN'] ?>">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<!-- Modal Header -->
+												<div class="modal-header">
+													<h4 class="modal-title">Delete User</h4>
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+												</div>
+
+												<div class="modal-body">
+													<!-- Delete user form -->
+													<form method="post" action="/dashboard">
+														<input type="hidden" name="action" value="delete">
+														<input type="hidden" name="cin" value="<?= $user['CIN'] ?>">
+														<p>Are you sure you want to delete this user?</p>
+														<button type="submit" class="btn btn-danger">Delete</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								<?php endforeach; ?>
+
 							</tbody>
-						
+
 						</table>
 
 					</div>
@@ -163,7 +241,9 @@
 	</section>
 	<!-- CONTENT -->
 
-
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script src="../../public/assets/js/script.js"></script>
 </body>
 
