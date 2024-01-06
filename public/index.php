@@ -30,6 +30,8 @@ $router->get('/users', 'App\Controllers\AdminController@index');
 $router->get('/medicine', 'App\Controllers\MedicineController@index');
 $router->get('/exportPdf', 'App\Controllers\AdminController@exportToPDF');
 $router->get('/exportMedicineToPDF', 'App\Controllers\MedicineController@exportMedicineToPDF');
+$router->get('/logout', 'App\Controllers\AuthController@logout');
+$router->get('/medicament_shop', 'App\Controllers\patientEnligneController@showpro');
 
 
 //-------------------------------------------------------------------------------------------------------------------------

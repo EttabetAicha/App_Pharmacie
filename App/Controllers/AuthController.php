@@ -11,7 +11,14 @@ class AuthController
     {
         return require(__DIR__ . '/../../Views/login.php');
     }
+    public function logout()
+    {
+        session_destroy();
 
+        header("Location: /authetification");
+        exit();
+    }
+    
     public function signup()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -64,7 +71,7 @@ class AuthController
 
             if ($user->getType() === 'Admin') {
                 header("Location: /dashboard");
-            } elseif ($user->getType() === 'PatientEnligne') {
+            } elseif ($user->getType() === 'PatientEnLigne') {
                 header("Location: /");
             } else {
                 echo "Invalid user type";
