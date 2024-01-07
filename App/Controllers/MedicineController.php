@@ -71,6 +71,30 @@ class MedicineController
             }
         }
     }
+    public function searchMedicament()
+{
+    if (isset($_POST['search'])) {
+        $searchTerm = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
+
+        // Assuming $yourMedicamentDAO is an instance of your MedicamentDAO class
+        $yourMedicamentDAO = new MedicamentDAO(); 
+
+        // Assuming searchMedicaments method accepts a search term and returns matching results
+        $medicaments = $yourMedicamentDAO->searchMedicaments($searchTerm);
+
+        $response = [
+            'success' => true,
+            'data' => $medicaments,
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit();
+    }
+}
+
+    
+    
     public function exportMedicineToPDF() {
         $medicamentDAO = new MedicamentDAO;
         $medicaments = $medicamentDAO->getAllMedicaments();

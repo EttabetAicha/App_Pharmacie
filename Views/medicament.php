@@ -119,45 +119,63 @@
     </header>
 
     <section class="services section">
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>We Offer Different Services To Improve Your Health</h2>
-                        <img src="assets/img/section-img.png" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                <div class="col-md-6 mx-auto">
+                    <div class="input-group">
+                        <form action="#" method="post" id="searchForm">
+                            <input type="text" name="search" id="search" placeholder="Search Medicines...">
+                        </form>
+                        <div class="input-group-append">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <?php
-                $counter = 0; ?>
-                <?php
-                foreach ($medicaments as $medicament) { ?>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card">
-                            <img src="assets/img/med8.jpg" class="card-img-top" alt="Drug Image">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $medicament["nom"]; ?></h5>
-                                <p class="card-text"><?php echo $medicament["description"]; ?></p>
-                                <p class="card-text">Price: <?php echo $medicament["prix"]; ?> $</p>
-                                <form action="/buyMedicament" method="post">
-                                    <input type="hidden" name="medication_id" value="<?php echo $_SESSION["cin"]; ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo $medicament["id"]; ?>">
-                                    <button type="submit" class='btn'>Buy Now</button>
-                                </form>
-                            </div>
+        </div>
+
+        <div class="container">
+            <div id="searchResults"></div>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>We Offer Different Services To Improve Your Health</h2>
+                            <img src="assets/img/section-img.png" alt="#">
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
                     <?php
-                    $counter++;
-                    if ($counter % 3 == 0) {
-                        echo '</div><div class="row">';
-                    }
-                    ?>
-                <?php } ?>
-            </div>
+                    $counter = 0; ?>
+                    <?php
+                    foreach ($medicaments as $medicament) { ?>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card">
+                                <img src="assets/img/med8.jpg" class="card-img-top" alt="Drug Image">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $medicament["nom"]; ?></h5>
+                                    <p class="card-text"><?php echo $medicament["description"]; ?></p>
+                                    <p class="card-text">Price: <?php echo $medicament["prix"]; ?> $</p>
+                                    <form action="/buyMedicament" method="post">
+                                        <input type="hidden" name="medication_id" value="<?php echo $medicament["id"]; ?>">
+                                        <input type="hidden" name="user_id" value="<?php echo $_SESSION["cin"]; ?>">
+                                        <button type="submit" class='btn'>Buy Now</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
+                        $counter++;
+                        if ($counter % 3 == 0) {
+                            echo '</div><div class="row">';
+                        }
+                        ?>
+                    <?php } ?>
+                </div>
 
     </section>
     <!--/ End service -->
@@ -289,6 +307,55 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <!-- Add this script at the end of your HTML body -->
+    <!-- Add this script at the end of your HTML body -->
+    <script>
+        $(document).ready(function() {
+            $("#search").on("input", function() {
+                var searchTerm = $(this).val();
+                $.ajax({
+                    url: "/searchMedicament", // Make sure this path is correct
+                    method: "POST",
+                    data: {
+                        search: searchTerm
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        displaySearchResults(data);
+                    },
+                    error: function(error) {
+                        console.error("Search AJAX request failed:", error);
+                    }
+                });
+            });
+        });
+
+        function displaySearchResults(data) {
+            $("#searchResults").empty();
+
+            if (data.length > 0) {
+                $.each(data, function(index, medicament) {
+                    var resultItem = $("<div>").addClass("result-item");
+                    resultItem.append($("<h5>").text(medicament.nom));
+                    resultItem.append($("<p>").text(medicament.description));
+                    resultItem.append($("<p>").text("Price: " + medicament.prix + " $"));
+
+                    var buyButton = $("<button>").addClass("btn").text("Buy Now");
+                    buyButton.on("click", function() {
+
+                        console.log("Buy button clicked for medicine ID: " + medicament.id);
+                    });
+
+                    resultItem.append(buyButton);
+                    $("#searchResults").append(resultItem);
+                });
+            } else {
+                $("#searchResults").html("<p>No results found.</p>");
+            }
+        }
+    </script>
+    </script>
+
 </body>
 
 </html>

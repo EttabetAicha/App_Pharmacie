@@ -60,6 +60,16 @@ class MedicamentDAO {
             return false;
         }
     }
+    public function searchMedicaments($searchTerm)
+    {
+        $query = "SELECT * FROM medicament WHERE nom LIKE :searchTerm";
+        $statement = $this->db->prepare($query);
+        $searchPattern = "%{$searchTerm}%";
+        $statement->bindParam(":searchTerm", $searchPattern, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
     
     
     

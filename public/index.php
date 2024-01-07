@@ -50,6 +50,8 @@ $router->post('/adduser', 'App\Controllers\AdminController@addUser');
 $router->post('/medicine/edit', 'App\Controllers\MedicineController@updateMedicine');
 $router->post('/medicine/delete', 'App\Controllers\MedicineController@deleteMedicament');
 $router->post('/addmedicine', 'App\Controllers\MedicineController@addMedicament');
+$router->post('/searchMedicament', 'App\Controllers\MedicineController@searchMedicament');
+
 
 
 

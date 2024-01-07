@@ -1,48 +1,40 @@
-<?php 
+<?php
+
 namespace App\Controllers;
-use App\DAO\VenteDAO ;
+
+use App\DAO\VenteDAO;
+use App\Models\Medicament;
+use App\Models\Vente;
 use DateTime;
 
-class SalesController{
-   
-    public function index(){
+class SalesController
+{
+
+    public function index()
+    {
         $ventesDAO = new VenteDAO;
         $ventes = $ventesDAO->getAllSales();
-        require(__DIR__ ."/../../Views/dashboard/vente.php");
+        require(__DIR__ . "/../../Views/dashboard/vente.php");
     }
     public function buyMedicament()
-{
-    // Get data from the request body
-    $data = $_POST;
+    {
+        if (!isset($_POST['medication_id'], $_POST['user_id'])) {
+            echo "Invalid request parameters.";
+            exit();
+        }
 
-    // Check if medicationId and userId are present
-    if (!isset($data['medication_id'], $_SESSION['CIN'])) {
-        echo "Invalid request parameters.";
-        exit();
-    }
+        $medicationId = $_POST['medication_id'];
+        $userId = $_POST['user_id'];
+        $venteDAO = new VenteDAO();
+        $saleType = 'VenteEnLigne';
+        $dateVente = (new DateTime())->format('Y-m-d');
+        $isSale = 1;
 
-    // Assuming the keys 'medication_id' and 'user_id' are present in the request body
-    $medicationId = $data['medication_id'];
-    $userId = $_SESSION['CIN'];
+        $vente = new Vente($medicationId, $userId, $dateVente, $saleType, $isSale);
+        $venteDAO->createSale($vente);
 
-    // Create a new instance of VenteDAO
-    $venteDAO = new VenteDAO();
-
-    // Set other variables
-    $SaleType = 'VenteEnLigne';
-    $dateVente = (new DateTime())->format('Y-m-d');
-    $isSale = 1;
-
-    // Create sale record
-    $result = $venteDAO->createSale($medicationId, $userId, $SaleType, $dateVente, $isSale);
-
-    // Check the result and provide appropriate feedback
-    if ($result) {
         echo 'Sale added successfully';
         exit();
-    } else {
-        echo "Failed to create sale record.";
     }
-}
-
+    
 }
