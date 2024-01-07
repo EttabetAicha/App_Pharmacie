@@ -14,7 +14,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../../public/assets/css/dashboard.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
 
 	<title>My Store</title>
 </head>
@@ -31,26 +31,26 @@
 			<span class="text">Admin</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li >
 				<a href="#">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="store.php">
+				<a href="users">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Manage Our Users</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="medicine">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Manage Medicine</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
+			<li class="active"> 
+				<a href="sales">
 					<i class='bx bxs-message-dots' ></i>
 					<span class="text">Manage Sales</span>
 				</a>
@@ -139,20 +139,21 @@
 									<th>Action</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>NABIL EL HAKIMI</td>
-									<td>Doliprane</td>                        
-									<td>299</td>         
-									<td>12/12/2023</td>         
+							 <?php foreach ($ventes as $sale) { ?>
+                                    <tr>
+                                        <td><?php echo $sale['id']; ?></td>
+                                        <td><?php echo $sale['full_name']; ?></td>
+                                        <td><?php echo $sale['nom']; ?></td>
+                                        <td><?php echo $sale['prix']; ?></td>
+                                        <td><?php echo $sale['date_vente']; ?></td>
+										<td><?php echo $sale['type']; ?></td>
 
-						
-									<td>
-										<a href="store.php" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-										<a href="store.php" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-									</td>
-								</tr>
+                                        <td>
+											<a href="store.php" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+											<a href="store.php" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
 							</tbody>
 						</table>
 					

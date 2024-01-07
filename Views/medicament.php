@@ -62,17 +62,7 @@
             </div>
         </div>
     </div>
-    <!-- End Preloader -->
-
-    <!-- Get Pro Button -->
-
-
-    <!-- Header Area -->
     <header class="header">
-        <!-- Topbar -->
-
-        <!-- End Topbar -->
-        <!-- Header Inner -->
         <div class="header-inner">
             <div class="container">
                 <div class="inner">
@@ -109,33 +99,25 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <!--/ End Main Menu -->
                         </div>
                         <div class="col-lg-2 col-12">
-							<div class="get-quote">
-								<?php
-								if (isset($_SESSION['type'])) {
-								?>
-									<a href="/logout" class="btn">Log out</a>
-								<?php } else { ?>
-									<a href="authetification" class="btn">Log in</a>
-								<?php } ?>
-							</div>
-						</div>
+                            <div class="get-quote">
+                                <?php
+                                if (isset($_SESSION['type'])) {
+                                ?>
+                                    <a href="/logout" class="btn">Log out</a>
+                                <?php } else { ?>
+                                    <a href="authetification" class="btn">Log in</a>
+                                <?php } ?>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
-        <!--/ End Header Inner -->
     </header>
-    <!-- End Header Area -->
 
-
-
-    <!--/ End portfolio -->
-
-    <!-- Start service -->
     <section class="services section">
         <div class="container">
             <div class="row">
@@ -148,7 +130,10 @@
                 </div>
             </div>
             <div class="row">
-                <?php foreach ($medicaments as $medicament) { ?>
+                <?php
+                $counter = 0; ?>
+                <?php
+                foreach ($medicaments as $medicament) { ?>
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card">
                             <img src="assets/img/med8.jpg" class="card-img-top" alt="Drug Image">
@@ -156,21 +141,30 @@
                                 <h5 class="card-title"><?php echo $medicament["nom"]; ?></h5>
                                 <p class="card-text"><?php echo $medicament["description"]; ?></p>
                                 <p class="card-text">Price: <?php echo $medicament["prix"]; ?> $</p>
-
-                                <a href="#" class="btn btn-primary text-light">Buy Now</a>
+                                <form action="/buyMedicament" method="post">
+                                    <input type="hidden" name="medication_id" value="<?php echo $_SESSION["cin"]; ?>">
+                                    <input type="hidden" name="user_id" value="<?php echo $medicament["id"]; ?>">
+                                    <button type="submit" class='btn'>Buy Now</button>
+                                </form>
                             </div>
                         </div>
                     </div>
+
+                    <?php
+                    $counter++;
+                    if ($counter % 3 == 0) {
+                        echo '</div><div class="row">';
+                    }
+                    ?>
                 <?php } ?>
             </div>
-        </div>
+
     </section>
     <!--/ End service -->
 
 
     <!-- Footer Area -->
     <footer id="footer" class="footer ">
-        <!-- Footer Top -->
         <div class="footer-top">
             <div class="container">
                 <div class="row">

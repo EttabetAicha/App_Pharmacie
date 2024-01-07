@@ -51,7 +51,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="sales">
 					<i class='bx bxs-message-dots'></i>
 					<span class="text">Manage Sales</span>
 				</a>

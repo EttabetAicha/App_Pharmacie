@@ -12,6 +12,7 @@ use App\DAO\MedicationDAO;
 use App\Controllers\PatientEnligneController;
 use App\Controllers\AdminController;
 use App\Controllers\MedicineController;
+use App\Controllers\SalesController;
 use App\Routes\Router;
 
 session_start();
@@ -32,12 +33,15 @@ $router->get('/exportPdf', 'App\Controllers\AdminController@exportToPDF');
 $router->get('/exportMedicineToPDF', 'App\Controllers\MedicineController@exportMedicineToPDF');
 $router->get('/logout', 'App\Controllers\AuthController@logout');
 $router->get('/medicament_shop', 'App\Controllers\patientEnligneController@showpro');
+$router->get('/sales', 'App\Controllers\SalesController@index');
+
 
 
 //-------------------------------------------------------------------------------------------------------------------------
 //post
 $router->post('/register', 'App\Controllers\AuthController@signup');
 $router->post('/login', 'App\Controllers\AuthController@signin');
+$router->post('/buyMedicament', 'App\Controllers\SalesController@buyMedicament');
 //for user
 $router->post('/user/edit', 'App\Controllers\AdminController@updateUser');
 $router->post('/user/delete', 'App\Controllers\AdminController@deleteUser');
