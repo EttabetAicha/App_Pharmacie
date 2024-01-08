@@ -34,6 +34,7 @@ class SalesController
         $venteDAO->createSale($vente);
 
         echo 'Sale added successfully';
+        header('location: /medicine');
         exit();
     }
     

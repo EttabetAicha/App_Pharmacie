@@ -58,7 +58,7 @@ $router->post('/searchMedicament', 'App\Controllers\MedicineController@searchMed
 
 
 
-$router->route($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+$router->route($_SERVER['REQUEST_METHOD'],$_SERVER['REQUEST_URI']);
 
 
 ob_end_flush();
